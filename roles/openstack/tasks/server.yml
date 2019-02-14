@@ -1,3 +1,24 @@
+- name: Create rke nginx servers
+  os_server:
+    cloud: default
+    name: nginx
+    image: k8s_ubuntu_16.04
+    key_name: rancher_key
+    timeout: 200
+    flavor: test
+    auto_ip: no
+    nics:
+      - port-name: nginx
+    userdata: |
+      #cloud-config
+      chpasswd:
+        list: |
+          ubuntu:openstack
+        expire: False
+      ssh_pwauth: true
+      package_upgrade: true
+      manage_etc_hosts: true
+
 - name: Create rke master1 servers
   os_server:
     cloud: default
@@ -17,14 +38,17 @@
         expire: False
       ssh_pwauth: true
       packages:
-        - python-minimal
+        - sshpass
+        - python-pip
       package_upgrade: true
       manage_etc_hosts: true
+      runcmd:
+         -  'su -c "pip install ansible"'
 
 - name: Create rke master2 servers
   os_server:
     cloud: default
-    name: master3
+    name: master2
     image: k8s_ubuntu_16.04
     key_name: rancher_key
     timeout: 200
@@ -39,9 +63,6 @@
           ubuntu:openstack
         expire: False
       ssh_pwauth: true
-      packages:
-        - python-minimal
-      package_upgrade: true
       manage_etc_hosts: true
 
 
@@ -63,7 +84,4 @@
           ubuntu:openstack
         expire: False
       ssh_pwauth: true
-      packages:
-        - python-minimal
-      package_upgrade: true
       manage_etc_hosts: true

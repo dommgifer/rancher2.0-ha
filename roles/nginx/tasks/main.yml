@@ -1,0 +1,11 @@
+- name: Install nginx
+  apt:
+    name: nginx
+
+- name: Copy nginx.conf
+   template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+
+- name: Restart nginx
+  shell: nginx -s reload

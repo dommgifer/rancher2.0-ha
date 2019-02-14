@@ -18,9 +18,9 @@
 #  include: security_groups.yml
 #  run_once: true
 
-- name: Create rancher network
-  include: network.yml
-  run_once: true
+#- name: Create rancher network
+#  include: network.yml
+#  run_once: true
 
 - name: create vm
   include: server.yml

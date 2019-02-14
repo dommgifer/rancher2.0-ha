@@ -1,4 +1,9 @@
 ---
+- hosts: nginx
+  become: yes
+  roles:
+    - { role: nginx }
+
 - hosts: rancher
   become: yes
   roles:

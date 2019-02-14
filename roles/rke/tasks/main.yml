@@ -19,12 +19,23 @@
   file:
     path: "{{ item }}"
     state: directory
+    owner: ubuntu
   with_items:
     - /home/ubuntu/.kube
+    - /root/.kube
   run_once: true
 
-- name: copy kuneconfig 
+- name: Copy kuneconfig to ubuntu 
   shell: cp /home/ubuntu/kube_config_rancher-cluster.yml /home/ubuntu/.kube/config
+  run_once: true
+
+- name: Copy kuneconfig to root
+  shell: cp /home/ubuntu/kube_config_rancher-cluster.yml /root/.kube/config
+  run_once: true
+
+- name: Change owner kuneconfig 
+  become: true
+  shell: chown ubuntu:ubuntu /home/ubuntu/.kube/config
   run_once: true
 
 - name: Download kubectl

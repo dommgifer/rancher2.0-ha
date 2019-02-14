@@ -1,11 +1,11 @@
-master1_public_address: 10.50.2.27
-master1_internal_address: 172.16.0.8
+master1_public_address: 192.168.0.5
+master1_internal_address: 192.168.0.5
 
-master2_public_address: 10.50.2.35
-master2_internal_address: 172.16.0.3
+master2_public_address: 192.168.0.6
+master2_internal_address: 192.168.0.6
 
-master3_public_address: 10.50.2.43
-master3_internal_address: 172.16.0.5
+master3_public_address: 192.168.0.7
+master3_internal_address: 192.168.0.7
 
 dns_hostname: rancher.my.org
 

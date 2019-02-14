@@ -28,7 +28,17 @@
   retries: 5
   delay: 10
 
-- name: Create static IP port
+- name: Create static IP 192.168.0.4 port
+  os_port:
+    cloud: default
+    state: present
+    name: nginx
+    network: rancher_network
+    security_groups: rancher_sec_grp
+    fixed_ips:
+      - ip_address: 192.168.0.4
+
+- name: Create static IP 192.168.0.5 port
   os_port:
     cloud: default
     state: present
@@ -38,7 +48,7 @@
     fixed_ips:
       - ip_address: 192.168.0.5
 
-- name: Create static IP port
+- name: Create static IP 192.168.0.6 port
   os_port:
     cloud: default
     state: present
@@ -48,7 +58,7 @@
     fixed_ips:
       - ip_address: 192.168.0.6
 
-- name: Create static IP port
+- name: Create static IP 192.168.0.7 port
   os_port:
     cloud: default
     state: present
