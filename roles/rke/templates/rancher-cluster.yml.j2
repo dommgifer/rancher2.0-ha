@@ -1,0 +1,22 @@
+nodes:
+  - address: {{ master1_public_address }}
+    internal_address: {{ master1_internal_address }}
+    user: root
+    hostname_override: master1
+    role: [controlplane,worker,etcd]
+  - address: {{ master2_public_address }}
+    internal_address: {{ master2_internal_address }}
+    user: root
+    hostname_override: master2
+    role: [controlplane,worker,etcd]
+  - address: {{ master3_public_address }}
+    internal_address: {{ master3_internal_address }}
+    user: root
+    hostname_override: master3
+    role: [controlplane,worker,etcd]
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h

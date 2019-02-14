@@ -1,0 +1,69 @@
+- name: Create rke master1 servers
+  os_server:
+    cloud: default
+    name: master1
+    image: k8s_ubuntu_16.04
+    key_name: rancher_key
+    timeout: 200
+    flavor: rancher
+    auto_ip: no
+    nics:
+      - port-name: rancher-master-1
+    userdata: |
+      #cloud-config
+      chpasswd:
+        list: |
+          ubuntu:openstack
+        expire: False
+      ssh_pwauth: true
+      packages:
+        - python-minimal
+      package_upgrade: true
+      manage_etc_hosts: true
+
+- name: Create rke master2 servers
+  os_server:
+    cloud: default
+    name: master3
+    image: k8s_ubuntu_16.04
+    key_name: rancher_key
+    timeout: 200
+    flavor: rancher
+    auto_ip: no
+    nics:
+      - port-name: rancher-master-2
+    userdata: |
+      #cloud-config
+      chpasswd:
+        list: |
+          ubuntu:openstack
+        expire: False
+      ssh_pwauth: true
+      packages:
+        - python-minimal
+      package_upgrade: true
+      manage_etc_hosts: true
+
+
+- name: Create rke master3 servers
+  os_server:
+    cloud: default
+    name: master3
+    image: k8s_ubuntu_16.04
+    key_name: rancher_key
+    timeout: 200
+    flavor: rancher
+    auto_ip: no
+    nics:
+      - port-name: rancher-master-3
+    userdata: |
+      #cloud-config
+      chpasswd:
+        list: |
+          ubuntu:openstack
+        expire: False
+      ssh_pwauth: true
+      packages:
+        - python-minimal
+      package_upgrade: true
+      manage_etc_hosts: true

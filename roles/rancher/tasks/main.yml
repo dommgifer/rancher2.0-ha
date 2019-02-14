@@ -1,0 +1,48 @@
+- name: Download helm
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz
+    dest: /home/ubuntu/helm-v2.12.3-linux-amd64.tar.gz
+  run_once: true
+
+- name: Extract helm-v2.12.3-linux-amd64.tar.gz
+  unarchive:
+    src: /home/ubuntu/helm-v2.12.3-linux-amd64.tar.gz
+    dest: /home/ubuntu/
+    remote_src: yes
+  run_once: true
+
+- name: Move helm
+  shell: cp /home/ubuntu/linux-amd64/helm /usr/bin/
+  run_once: true
+
+- name: Create the ServiceAccount in the kube-system namespace.
+  shell: kubectl -n kube-system create serviceaccount tiller
+  run_once: true
+
+- name: Create the ClusterRoleBinding to give the tiller account access to the cluster
+  shell: kubectl create clusterrolebinding tiller  --clusterrole cluster-admin  --serviceaccount=kube-system:tiller
+  run_once: true
+
+- name: Use helm to install the tiller service
+  shell: helm init --service-account tiller
+  run_once: true
+
+- name: Test Tiller installation
+  shell: kubectl -n kube-system  rollout status deploy/tiller-deploy
+  run_once: true
+
+- name: Add rancher helm repo
+  shell: helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+  run_once: true
+
+- name: Install cert-manager
+  shell: helm install stable/cert-manager  --name cert-manager  --namespace kube-system  --version v0.5.2
+  run_once: true
+
+- name: Wait for cert-manager
+  shell: kubectl -n kube-system rollout status deploy/cert-manager
+  run_once: true
+
+- name: Install Rancher
+  shell: "helm install rancher-stable/rancher  --name rancher  --namespace cattle-system --set hostname={{ dns_hostname }}"
+  run_once: true

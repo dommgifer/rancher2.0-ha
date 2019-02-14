@@ -1,0 +1,10 @@
+clouds:
+  default:
+    auth:
+      project_domain_name: Default
+      user_domain_name: Default
+      project_name: {{ keystone_project_name }}
+      username: {{ keystone_user }}
+      password: {{ keystone_password }}
+      auth_url: http://{{ openstack_keystone_url }}:5000/v3
+    region_name: RegionOne

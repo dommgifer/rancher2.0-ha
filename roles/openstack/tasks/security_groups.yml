@@ -1,0 +1,165 @@
+- name: Create Rancher security group
+  os_security_group:
+    cloud: default
+    state: present
+    name: rancher_sec_grp
+    description: "security group for rancher"
+    interface: admin
+  register: add_security_group
+  until: add_security_group is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 22 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 22
+    port_range_max: 22
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 80 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 80
+    port_range_max: 80
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 443 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 443
+    port_range_max: 443
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 6443 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 6443
+    port_range_max: 6443
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 2376 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 2376
+    port_range_max: 2376
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 2379 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 2379
+    port_range_max: 2379
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 2380 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 2380
+    port_range_max: 2380
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 8472 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "udp"
+    port_range_min: 8472
+    port_range_max: 8472
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 9099 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 9099
+    port_range_max: 9099
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 10250 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 10250
+    port_range_max: 10250
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10
+
+- name: Create security group 10254 port rule for rancher
+  os_security_group_rule:
+    cloud: default
+    state: present
+    protocol: "tcp"
+    port_range_min: 10254
+    port_range_max: 10254
+    security_group: rancher_sec_grp
+    interface: admin
+  register: add_security_group_rule
+  until: add_security_group_rule is success
+  retries: 5
+  delay: 10

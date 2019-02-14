@@ -1,0 +1,9 @@
+[rancher]
+master1    ansible_host=192.168.0.5
+master2    ansible_host=192.168.0.6
+master3    ansible_host=192.168.0.7
+
+[all:vars]
+ansible_ssh_user=ubuntu 
+ansible_become_pass=openstack
+ansible_ssh_pass=openstack

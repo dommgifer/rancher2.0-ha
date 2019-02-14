@@ -1,0 +1,10 @@
+- name: Create Rancher Flavor
+  os_nova_flavor:
+    cloud: default
+    state: present
+    name: rancher
+    ram: 16384
+    vcpus: 4
+    disk: 200
+    is_public: False
+    interface: admin

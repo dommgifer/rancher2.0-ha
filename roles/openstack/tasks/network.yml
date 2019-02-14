@@ -1,0 +1,59 @@
+- name: Create rancher network
+  os_network:
+    cloud: default
+    state: present
+    name: rancher_network
+    provider_network_type: vxlan
+    interface: admin
+  register: add_network
+  until: add_network is success
+  retries: 5
+  delay: 10
+
+- name: Ensure rancher_network subnet exists
+  os_subnet:
+    cloud: default
+    state: present
+    network_name: rancher_network
+    name: rancher_network_subnet
+    cidr: 192.168.0.0/24
+    enable_dhcp: false
+    gateway_ip: 192.168.0.1
+    dns_nameservers: 8.8.8.8
+    allocation_pool_start: 192.168.0.2
+    allocation_pool_end: 192.168.0.200
+    interface: admin
+  register: add_subnet
+  until: add_subnet is success
+  retries: 5
+  delay: 10
+
+- name: Create static IP port
+  os_port:
+    cloud: default
+    state: present
+    name: rancher-master-1
+    network: rancher_network
+    security_groups: rancher_sec_grp
+    fixed_ips:
+      - ip_address: 192.168.0.5
+
+- name: Create static IP port
+  os_port:
+    cloud: default
+    state: present
+    name: rancher-master-2
+    network: rancher_network
+    security_groups: rancher_sec_grp
+    fixed_ips:
+      - ip_address: 192.168.0.6
+
+- name: Create static IP port
+  os_port:
+    cloud: default
+    state: present
+    name: rancher-master-3
+    network: rancher_network
+    security_groups: rancher_sec_grp
+    fixed_ips:
+      - ip_address: 192.168.0.7

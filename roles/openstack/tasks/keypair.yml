@@ -1,0 +1,6 @@
+- name: Create Rancher ssh key
+  os_keypair:
+    cloud: default
+    state: present
+    name: rancher_key
+    public_key_file: /home/localadmin/.ssh/id_rsa.pub

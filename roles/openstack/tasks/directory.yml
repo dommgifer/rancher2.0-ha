@@ -1,0 +1,4 @@
+- name: Create /etc/openstack
+  file:
+    path: /etc/openstack
+    state: directory

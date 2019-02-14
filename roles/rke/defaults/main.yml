@@ -1,0 +1,2 @@
+rke_version: "v0.1.15"
+rke_url: "https://github.com/rancher/rke/releases/download/{{ rke_version }}/rke_linux-amd64"

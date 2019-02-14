@@ -1,0 +1,36 @@
+- name: Download rke
+  get_url:
+    url: "{{ rke_url }}"
+    dest: /usr/bin/rke
+    mode: +x
+  run_once: true
+
+- name: Copy rancher-cluster.yml
+  template:
+    src: rancher-cluster.yml.j2
+    dest: /home/ubuntu/rancher-cluster.yml
+  run_once: true
+
+- name: Deploy rke
+  shell: rke up --config /home/ubuntu/rancher-cluster.yml
+  run_once: true
+
+- name: Create .kube
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /home/ubuntu/.kube
+  run_once: true
+
+- name: copy kuneconfig 
+  shell: cp /home/ubuntu/kube_config_rancher-cluster.yml /home/ubuntu/.kube/config
+  run_once: true
+
+- name: Download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubectl
+    dest: /usr/bin/kubectl
+    mode: +x
+  run_once: true
+

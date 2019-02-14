@@ -1,0 +1,4 @@
+- name: Copy clouds.yaml to /etc/openstack
+  template:
+    src: clouds.yaml.j2
+    dest: /etc/openstack/clouds.yaml

@@ -1,0 +1,8 @@
+---
+- hosts: rancher
+  become: yes
+  roles:
+    - { role: common }
+    - { role: docker }
+    - { role: rke }
+    - { role: rancher }

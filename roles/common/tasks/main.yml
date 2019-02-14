@@ -1,0 +1,39 @@
+- name: Generate a SSH key
+  user:
+    name: "{{ item }}"
+    generate_ssh_key: yes
+  with_items:
+    - root
+
+- name: Prepare /tmp/key
+  file:
+    path: /tmp/key
+    state: directory
+
+- name: Fetching public key to /tmp
+  fetch:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    flat: yes
+  with_items:
+    - { src: "/root/.ssh/id_rsa.pub", dest: "/tmp/key/{{ inventory_hostname }}_root.pub" }
+
+- name: Copy public key to nodes
+  copy:
+    src: "{{ item }}"
+    dest: /tmp/key/
+  with_fileglob:
+    - "/tmp/key/*.pub"
+
+- name: Set root authorized keys
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '{{ item }}') }}"
+  with_fileglob:
+    - "/tmp/key/*.pub"
+
+- name: delete /tmp/key
+  file:
+    path: /tmp/key
+    state: absent

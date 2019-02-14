@@ -1,0 +1,7 @@
+[openstack]
+openstack  ansible_host=10.40.0.7
+
+[all:vars]
+ansible_ssh_user=localadmin
+ansible_become_pass=openstack
+ansible_ssh_pass=openstack

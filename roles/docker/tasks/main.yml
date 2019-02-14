@@ -1,0 +1,5 @@
+- name: Install docker
+  shell: curl https://releases.rancher.com/install-docker/17.03.sh | sh
+
+- name: Add ubuntu user to docker 
+  shell: usermod -aG docker ubuntu

@@ -1,0 +1,54 @@
+#- name: Create /etc/openstack
+#  include: directory.yml
+#  run_once: true
+
+#- name: Copy clouds.yaml
+#  include: config.yml
+#  run_once: true
+
+#- name: Create rancher flavor
+#  include: flavor.yml
+#  run_once: true
+
+#- name: Create rancher keypair
+#  include: keypair.yml
+#  run_once: true
+
+#- name: Create rancher security group
+#  include: security_groups.yml
+#  run_once: true
+
+- name: Create rancher network
+  include: network.yml
+  run_once: true
+
+- name: create vm
+  include: server.yml
+  run_once: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#- name: Get vm
+#  os_server_facts:
+#    cloud: default
+#    server: apa
+#  register: detail
+#  run_once: true
+
+#- name: get ip
+#  debug:
+#    var: openstack_servers[0].private_v4
+#  run_once: true
