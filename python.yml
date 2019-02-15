@@ -1,3 +1,12 @@
+- hosts: nginx
+  gather_facts: False
+  become: true
+  tasks:
+  - name: Install python 2.7
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    register: output
+    changed_when: output.stdout != ""
+
 - hosts: rancher
   gather_facts: False
   become: true
