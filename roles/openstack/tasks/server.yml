@@ -44,7 +44,7 @@
       manage_etc_hosts: true
       runcmd:
          -  'su -c "pip install ansible"'
-         -  'su -c "git clone https://github.com/dommgifer/rancher2.0-ha.git"'
+         -  'su -c "git clone https://github.com/dommgifer/rancher2.0-ha.git /home/ubuntu/rancher2.0-ha"'
          -  'su -c "ansible-playbook -i /home/ubuntu/rancher2.0-ha/inventory /home/ubuntu/rancher2.0-ha/python.yml"'
          -  'su -c "ansible-playbook -i /home/ubuntu/rancher2.0-ha/inventory /home/ubuntu/rancher2.0-ha/deploy.yml"'
 
