@@ -43,6 +43,6 @@
   shell: kubectl -n kube-system rollout status deploy/cert-manager
   run_once: true
 
-- name: Install Rancher
-  shell: "helm install rancher-stable/rancher  --name rancher  --namespace cattle-system --set hostname={{ dns_hostname }}"
-  run_once: true
+#- name: Install Rancher
+#  shell: "helm install rancher-stable/rancher  --name rancher  --namespace cattle-system --set hostname={{ dns_hostname }}"
+#  run_once: true
