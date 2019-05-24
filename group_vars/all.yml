@@ -14,5 +14,6 @@ openstack_keystone_url: 10.50.2.10
 keystone_user: admin
 keystone_password: openstack123!
 keystone_project_name: admin
+public_network_name: ext-net
 public_subnet_name: 8c6e3da5-3823-4a6b-994c-2b88a461b01a
 
