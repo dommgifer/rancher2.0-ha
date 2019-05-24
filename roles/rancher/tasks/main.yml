@@ -46,3 +46,17 @@
 - name: Install Rancher
   shell: "helm install rancher-stable/rancher  --name rancher  --namespace cattle-system --set hostname={{ dns_hostname }}"
   run_once: true
+
+- name: Copy rancher patch for dns
+  template:
+    src: deployment-patch.yaml.j2
+    dest: /home/ubuntu/deployment-patch.yaml
+  run_once: true
+
+- name: Update cattle-node-agent
+  shell: kubectl -n cattle-system patch  daemonsets cattle-node-agent --patch "$(cat /home/ubuntu/deployment-patch.yaml)"
+  run_once: true
+
+- name: Update cattle-cluster-agent
+  shell: kubectl -n cattle-system patch  deployments cattle-cluster-agent --patch "$(cat /home/ubuntu/deployment-patch.yaml)"
+  run_once: true
