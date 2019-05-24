@@ -2,7 +2,9 @@
     cloud: default
     state: present
     name: rancher_router
+    network: "{{ public_network_name}}"
     external_fixed_ips:
-      - subnet: {{ public_subnet_name }}
+      - subnet: "{{ public_subnet_name }}"
     interfaces:
-      - rancher_network_subnet 
+      - net: rancher_network
+        subnet: rancher_network_subnet 
