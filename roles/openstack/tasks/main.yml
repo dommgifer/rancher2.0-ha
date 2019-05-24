@@ -22,6 +22,10 @@
   include: network.yml
   run_once: true
 
+- name: Create rancher router
+  include: router.yml
+  run_once: true
+  
 - name: create vm
   include: server.yml
   run_once: true
