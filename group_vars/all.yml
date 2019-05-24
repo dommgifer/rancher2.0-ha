@@ -10,7 +10,9 @@ master3_internal_address: 192.168.0.7
 dns_hostname: rancher.my.org
 
 #Create in openstack
-openstack_keystone_url: 10.40.0.7
+openstack_keystone_url: 10.50.2.10
 keystone_user: admin
-keystone_password: openstack
+keystone_password: openstack123!
 keystone_project_name: admin
+public_subnet_name: 8c6e3da5-3823-4a6b-994c-2b88a461b01a
+

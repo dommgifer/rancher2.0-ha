@@ -1,0 +1,8 @@
+- os_router:
+    cloud: default
+    state: present
+    name: rancher_router
+    external_fixed_ips:
+      - subnet: {{ public_subnet_name }}
+    interfaces:
+      - rancher_network_subnet 

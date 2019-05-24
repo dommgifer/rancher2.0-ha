@@ -7,4 +7,15 @@
     vcpus: 4
     disk: 200
     is_public: False
-    interface: admin
+    interface: public
+
+- name: Create Nginx Flavor
+  os_nova_flavor:
+    cloud: default
+    state: present
+    name: nginx
+    ram: 1024
+    vcpus: 2
+    disk: 20
+    is_public: False
+    interface: public

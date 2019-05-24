@@ -4,7 +4,7 @@
     state: present
     name: rancher_network
     provider_network_type: vxlan
-    interface: admin
+    interface: public
   register: add_network
   until: add_network is success
   retries: 5
@@ -17,12 +17,12 @@
     network_name: rancher_network
     name: rancher_network_subnet
     cidr: 192.168.0.0/24
-    enable_dhcp: false
+    enable_dhcp: true
     gateway_ip: 192.168.0.1
     dns_nameservers: 8.8.8.8
     allocation_pool_start: 192.168.0.2
     allocation_pool_end: 192.168.0.200
-    interface: admin
+    interface: public
   register: add_subnet
   until: add_subnet is success
   retries: 5

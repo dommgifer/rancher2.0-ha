@@ -5,7 +5,7 @@
     image: k8s_ubuntu_16.04
     key_name: rancher_key
     timeout: 200
-    flavor: test
+    flavor: nginx
     auto_ip: no
     nics:
       - port-name: nginx

@@ -1,5 +1,5 @@
 [openstack]
-openstack  ansible_host=10.40.0.7
+openstack  ansible_host=10.50.2.2
 
 [all:vars]
 ansible_ssh_user=localadmin
